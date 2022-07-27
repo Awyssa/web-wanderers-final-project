@@ -1,4 +1,4 @@
-import express from "express";
+const express = require("express");
 // import  { Request, Response } from "express";
 
 import bodyParser from "body-parser";
