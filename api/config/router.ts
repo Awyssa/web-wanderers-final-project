@@ -1,7 +1,7 @@
-import { Router } from "express";
-import weeksRouter from "../controllers/weekController";
-import jobRouter from "../controllers/jobController";
-import userRouter from "../controllers/userController";
+const { Router }= require("express");
+const weeksRouter = require( "../controllers/weekController");
+const jobRouter = require( "../controllers/jobController");
+const userRouter = require( "../controllers/userController");
 
 const router = Router();
 
