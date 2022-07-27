@@ -1,8 +1,8 @@
 const express = require("express");
 // import  { Request, Response } from "express";
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-import bodyParser from "body-parser";
-import cors from "cors";
 
 import { router } from "./config/router";
 
