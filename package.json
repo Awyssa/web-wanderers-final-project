@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node api/dist/index.js",
     "clean": "rm -rf api/dist",
-    "build": "npm -s run clean && npm -s run generate && tsc",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "npm -s run clean && npm -s run generate && tsc",
+    "build:client": "client --config client/app.js",
     "generate": "npm -s run generate:prisma",
     "generate:prisma": "prisma generate --schema=./api/prisma/schema.prisma"
   },

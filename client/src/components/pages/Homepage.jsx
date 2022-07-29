@@ -2,6 +2,8 @@ import Hero from "../molecules/Hero.jsx";
 import Classes from "../molecules/Classes.jsx";
 
 const Homepage = () => {
+     console.log(process.env.NODE_ENV);
+
   return (
     <div>
       <Hero text="Can You Help?" />
