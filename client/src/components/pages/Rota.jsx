@@ -11,13 +11,16 @@ const Rota = () => {
   const [isChecked, setIsChecked] = useState([]);
   const [posts, setPost] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(5);
+  // const [postsPerPage, setPostsPerPage] = useState(5);
   let { day, month, year } = useParams();
 
+
+	let postsPerPage = 5
+const API_PATH = process.env.REACT_APP_API_PATH;
   let date = `${day}/${month}/${year}`;
   useEffect(() => {
     const fetchPost = async () => {
-      const res = await axios.get("http://localhost:4000/api/job");
+      const res = await axios.get(`${API_PATH}/job`);
       setPost(res.data);
     };
     fetchPost();
