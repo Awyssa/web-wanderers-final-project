@@ -48,7 +48,6 @@ jobsRouter
           job: {},
         },
       });
-      console.log(signedUpPeople);
       res.status(200).json(signedUpPeople);
     } catch (err) {
       res.status(404).json({ error: true, msg: err });
@@ -92,7 +91,6 @@ jobsRouter
         id = Week?.id;
       }
 
-      console.log(req.body, "weekId", weekId);
       const job: Job = await prisma.job.create({
         data: {
           jobTitle: jobTitle,
@@ -169,7 +167,6 @@ jobsRouter
         where: { id: parseInt(id) },
       });
 
-      console.log(selected);
       if (!selected) {
         res.status(404).json({ error: true, msg: "Cannot find this job" });
         return;

@@ -10,12 +10,19 @@ const saltRounds = 10;
 
 authRouter
   .post("/registerAdmin", async (req, res) => {
+
     const { email, password } = req.body;
-    try {
-	  const user = await prisma.user.findUnique({where:{
-		email:email,
-	  },
-	})
+
+		if(!email || !password)
+			return res.status(400).json({ msg: "Missing email or password" });
+
+    try 
+		{
+	  const user = await prisma.user.findUnique({ 
+			where: {
+				email: email,
+	  	}
+		})
 
 	if(!user){
 	  bcrypt.genSalt(saltRounds, function (err, salt) {

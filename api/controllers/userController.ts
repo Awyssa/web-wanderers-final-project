@@ -132,7 +132,6 @@ userRouter
         );
         userId = newUser.id;
 
-        console.log("newUser", newUser);
       } else {
         userId = userExists.id;
         //check if the existing user has applied for this job before
