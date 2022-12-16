@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+api/client-cert.pem
+api/client-key.pem
+api/server-ca.pem
