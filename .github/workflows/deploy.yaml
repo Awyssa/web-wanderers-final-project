@@ -1,0 +1,36 @@
+name: Run deployment
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+
+jobs:
+  terraform:
+    name: Terraform for ${{ inputs.environment }}
+    environment: ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      TF_VAR_ENV: ${{ inputs.environment }}
+      TF_VAR_PSQL_USERNAME: ${{ secrets.PSQL_USERNAME }}
+      TF_VAR_PSQL_PASSWORD: ${{ secrets.PSQL_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: hashicorp/setup-terraform@v2
+      - name: Terraform init 
+        run: terraform init -backend-config="resource_group_name=Cloud-Final-Project-${{ inputs.environment }}" -backend-config="storage_account_name=berkelifpstate${{ inputs.environment }}" 
+      - name: Terraform plan 
+        run: terraform plan
+      - name: Terraform apply 
+        run: terraform apply --auto-approve
