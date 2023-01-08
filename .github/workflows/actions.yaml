@@ -1,4 +1,4 @@
-name: Actions workflow_call:
+name: Actions workflow_call
 on: [push]
 jobs:
   run-github-action:
